@@ -1,0 +1,27 @@
+cd E:\github\g-project
+
+# Initialize Git repo only once
+git init
+
+# Add remote
+git remote add origin https://github.com/viswakimi/g-project.git
+
+# Remove ONLY nested .git folders (subprojects), NOT the parent
+Get-ChildItem -Recurse -Directory -Filter ".git" | Where-Object { $_.FullName -notmatch "E:\\github\\g-project\\.git" } | Remove-Item -Recurse -Force
+
+# Add all files
+git add .
+
+# Commit
+git commit -m "Added all projects as subfolders without history"
+
+# Rename branch
+git branch -M main
+
+# Push to GitHub
+git push -u origin main
+
+
+git config --global user.name "Viswa"
+git config --global user.email "your-email@example.com"
+
